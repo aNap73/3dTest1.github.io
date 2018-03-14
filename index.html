@@ -18,8 +18,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/90/three.js"></script>
 		<script src="./FOUR.js"></script>
 		<script>
-			var myheight = window.innerHeight;
-			var mywidth = window.innerWidth;
+			var myheight = window.innerHeight*.88;
+			var mywidth = window.innerWidth*.88;
 			//var myheight = '900';
 			//var mywidth = '900';
 
@@ -81,37 +81,50 @@
 			scene.add( cube );
 
 			camera.position.z = 5;
-			
+			camera.rotation.order = "YXZ"
 			var animateRight = function () {
 				requestAnimationFrame( animateRight );
-
-				//cube.rotation.x += 0.1;
-				cube.rotation.y += 0.07;
-				cube.rotation.x =.7;
-				//cube.rotation.z += document.antzdiff;
-				//cube.rotation.z = 30;	
-				//cubeMaterial.displacementScale = 200;
-				//cubeMaterial.map.needsUpdate = true;
-			  //cubeMaterial.displacementMap.needsUpdate = true;
-								
+				cube.rotation.y +=.01;
+				
+				cube.rotation.x =.7;				
 				renderer.render(scene, camera);
 			};
 			var animateLeft = function () {
 				requestAnimationFrame( animateLeft );
-				cube.rotation.y -= 0.07;
+				cube.rotation.y -= .01;
+								
 				cube.rotation.x =.7;
 				renderer.render(scene, camera);
+				
 			};
 			animateRight();
 			 
 			$('.mycanvas').on('click',function(event){				
 			
+				console.log('cube.rotation.y');
+				/*switch(true)
+				{
+ 					case Math.abs(cube.rotation.y) > 0 && Math.abs(cube.rotation.y) <= 150:
+						break;
+					case Math.abs(cube.rotation.y) > 150 && Math.abs(cube.rotation.y) <= 450:
+						break;
+					case Math.abs(cube.rotation.y) > 450 && Math.abs(cube.rotation.y) <= 750:
+						break;
+					case Math.abs(cube.rotation.y) > 750 && Math.abs(cube.rotation.y) < 1200:
+						break;
+					default:
+						cube.rotation.y=0;
+						break;
+				}*/
+				
+				
 				if(event.clientX>(mywidth/2)){
 					animateRight();
 				}else{
 					animateLeft();
 				}
-				
+			
+
 				event.preventDefault();
 			});			
 			$(document).ready(function(){{
