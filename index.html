@@ -22,8 +22,8 @@
 			//var mywidth = window.innerWidth;
 
 
-
-
+			var bDirR = true;
+			var antzdiff=0;
 			var myheight = 200;
 			var mywidth = 400;
 			var scene = new THREE.Scene();
@@ -82,23 +82,37 @@
 
 			camera.position.z = 5;
 			
-			var animate = function () {
-				requestAnimationFrame( animate );
+			var animateRight = function () {
+				requestAnimationFrame( animateRight );
 
 				//cube.rotation.x += 0.1;
-				cube.rotation.y += 0.01;
+				cube.rotation.y += 0.07;
 				cube.rotation.x =.7;
+				//cube.rotation.z += document.antzdiff;
 				//cube.rotation.z = 30;	
 				//cubeMaterial.displacementScale = 200;
 				//cubeMaterial.map.needsUpdate = true;
 			  //cubeMaterial.displacementMap.needsUpdate = true;
-				
-
+								
 				renderer.render(scene, camera);
 			};
-			animate();
+			var animateLeft = function () {
+				requestAnimationFrame( animateLeft );
+				cube.rotation.y -= 0.07;
+				cube.rotation.x =.7;
+				renderer.render(scene, camera);
+			};
+			animateRight();
+			 
 			$('.mycanvas').on('click',function(event){
-				console.dir(event);
+				
+				console.log(event);
+				if(event.clientX>198){
+					animateRight();
+				}else{
+					animateLeft();
+				}
+				
 				event.preventDefault();
 			});			
 			$(document).ready(function(){{
