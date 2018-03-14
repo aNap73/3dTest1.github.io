@@ -18,14 +18,14 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/90/three.js"></script>
 		<script src="./FOUR.js"></script>
 		<script>
-			//var myheight = window.innerHeight;
-			//var mywidth = window.innerWidth;
-
+			var myheight = window.innerHeight/4;
+			var mywidth = window.innerWidth/4;
+			//var myheight = '900';
+			//var mywidth = '900';
 
 			var bDirR = true;
 			var antzdiff=0;
-			var myheight = 200;
-			var mywidth = 400;
+		
 			var scene = new THREE.Scene();
 			var camera2 = new THREE.PerspectiveCamera()
 			var camera = new THREE.PerspectiveCamera( 75, (mywidth/myheight), 0.1, 1000 );
@@ -104,10 +104,9 @@
 			};
 			animateRight();
 			 
-			$('.mycanvas').on('click',function(event){
-				
-				console.log(event);
-				if(event.clientX>198){
+			$('.mycanvas').on('click',function(event){				
+			
+				if(event.clientX>(mywidth/2)){
 					animateRight();
 				}else{
 					animateLeft();
