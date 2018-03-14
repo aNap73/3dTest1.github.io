@@ -11,9 +11,10 @@
 				}
 		</style>
 	</head>
-	<body onload="myloader()">
+	<body>
 		
 		<div id="rightherebaby" class="mycanvas"></div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/90/three.js"></script>
 		<script src="./FOUR.js"></script>
 		<script>
@@ -43,12 +44,12 @@
 			THREE.ImageUtils.crossOrigin = '';
 			//var texture = THREE.ImageUtils.loadTexture('https://media.giphy.com/media/mXr3CMpXXdNJK/giphy.gif');
 
-			var image = document.createElement( 'img' );
-			image.src = '../images/Babyaby.png';
-			image.crossOrigin='anonymous';	
+			//var image = document.createElement( 'img' );
+			//image.src = './images/Babyaby.png';
+			//image.crossOrigin='anonymous';	
 			var texture = THREE.ImageUtils.loadTexture('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYD53PyXYNCHIlXCCr3yPGn7iYcz7EInfHdxavneEHhAVL-PBB');
-			var texture2 = new THREE.Texture( image );
-			texture.needsUpdate = true;
+			var texture2 = THREE.ImageUtils.loadTexture('https://anap73.github.io/Responsive-Portfolio.github.io/assets/images/AntMeHead.png');
+			//texture.needsUpdate = true;
 
 
 			texture.anisotropy = renderer.getMaxAnisotropy();
@@ -56,43 +57,53 @@
 			
 			var cubeMaterial = new THREE.MeshFaceMaterial([
         new THREE.MeshBasicMaterial({
-						map: texture
+						map: texture //four rot right
         }),
         new THREE.MeshBasicMaterial({
-					map: texture
+					map: texture //two rot right
         }),
         new THREE.MeshBasicMaterial({
-					map: texture
+					map: texture //top
         }),
         new THREE.MeshBasicMaterial({
-					map: texture
+					map: texture //bottom
         }),
         new THREE.MeshBasicMaterial({
-					map: texture
+					map: texture2  //front rot right
         }),
         new THREE.MeshBasicMaterial({
-					map: texture
+					map: texture2 //three rot right
         })
     ]);
 
 			var cube = new THREE.Mesh( geometry, cubeMaterial );
+			
 			scene.add( cube );
 
 			camera.position.z = 5;
-
+			
 			var animate = function () {
 				requestAnimationFrame( animate );
 
 				//cube.rotation.x += 0.1;
 				cube.rotation.y += 0.01;
+				cube.rotation.x =.7;
+				//cube.rotation.z = 30;	
 				//cubeMaterial.displacementScale = 200;
-				cubeMaterial.map.needsUpdate = true;
+				//cubeMaterial.map.needsUpdate = true;
 			  //cubeMaterial.displacementMap.needsUpdate = true;
 				
 
 				renderer.render(scene, camera);
 			};
 			animate();
+			$('.mycanvas').on('click',function(event){
+				console.dir(event);
+				event.preventDefault();
+			});			
+			$(document).ready(function(){{
+				
+			}});
 		</script>
 	</body>
 </html>
