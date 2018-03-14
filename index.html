@@ -11,7 +11,7 @@
 				}
 		</style>
 	</head>
-	<body>
+	<body onload="myloader()">
 		
 		<div id="rightherebaby" class="mycanvas"></div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/90/three.js"></script>
@@ -30,6 +30,9 @@
 			var camera = new THREE.PerspectiveCamera( 75, (mywidth/myheight), 0.1, 1000 );
 
 			var renderer = new THREE.WebGLRenderer();
+
+
+		
 			renderer.setSize( mywidth, myheight );
 			document.getElementById("rightherebaby").appendChild(renderer.domElement);
 			//document.body.appendChild( renderer.domElement );
@@ -39,30 +42,36 @@
 
 			THREE.ImageUtils.crossOrigin = '';
 			//var texture = THREE.ImageUtils.loadTexture('https://media.giphy.com/media/mXr3CMpXXdNJK/giphy.gif');
-			var texture = THREE.ImageUtils.loadTexture('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYD53PyXYNCHIlXCCr3yPGn7iYcz7EInfHdxavneEHhAVL-PBB');
-			var texture2 = THREE.ImageUtils.loadTexture('../images/Babyaby.png');
-			
-			texture.anisotropy = renderer.getMaxAnisotropy();
 
+			var image = document.createElement( 'img' );
+			image.src = '../images/Babyaby.png';
+			image.crossOrigin='anonymous';	
+			var texture = THREE.ImageUtils.loadTexture('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYD53PyXYNCHIlXCCr3yPGn7iYcz7EInfHdxavneEHhAVL-PBB');
+			var texture2 = new THREE.Texture( image );
+			texture.needsUpdate = true;
+
+
+			texture.anisotropy = renderer.getMaxAnisotropy();
+			//var texture2 =texture;
 			
 			var cubeMaterial = new THREE.MeshFaceMaterial([
         new THREE.MeshBasicMaterial({
 						map: texture
         }),
         new THREE.MeshBasicMaterial({
-					map: texture
-        }),
-        new THREE.MeshBasicMaterial({
-					map: texture
-        }),
-        new THREE.MeshBasicMaterial({
-					map: texture
-        }),
-        new THREE.MeshBasicMaterial({
-					map: texture
-        }),
-        new THREE.MeshBasicMaterial({
 					map: texture2
+        }),
+        new THREE.MeshBasicMaterial({
+					map: texture
+        }),
+        new THREE.MeshBasicMaterial({
+					map: texture
+        }),
+        new THREE.MeshBasicMaterial({
+					map: texture
+        }),
+        new THREE.MeshBasicMaterial({
+					map: texture
         })
     ]);
 
