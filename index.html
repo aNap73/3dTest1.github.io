@@ -40,6 +40,7 @@
 			THREE.ImageUtils.crossOrigin = '';
 			//var texture = THREE.ImageUtils.loadTexture('https://media.giphy.com/media/mXr3CMpXXdNJK/giphy.gif');
 			var texture = THREE.ImageUtils.loadTexture('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYD53PyXYNCHIlXCCr3yPGn7iYcz7EInfHdxavneEHhAVL-PBB');
+			var texture2 = THREE.ImageUtils.loadTexture('./images/Babyaby.png');
 			
 			texture.anisotropy = renderer.getMaxAnisotropy();
 
@@ -61,7 +62,7 @@
 					map: texture
         }),
         new THREE.MeshBasicMaterial({
-					map: texture
+					map: texture2
         })
     ]);
 
