@@ -12,7 +12,7 @@
 		</style>
 	</head>
 	<body>
-		<audio controls loop>
+		<audio id="music" controls loop>
 			<source src=".\assets\sounds\vertical.wav" type="audio/wav">
 		</audio>
 		<div id="rightherebaby" class="mycanvas"></div>
@@ -174,7 +174,7 @@
 			animateRight();
 			 
 			$('.mycanvas').on('click',function(event){				
-					
+				document.getElementById("music").play();
 
 				document.ant3dMouse = new THREE.Vector2();
 				document.ant3dMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
